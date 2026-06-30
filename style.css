@@ -157,6 +157,7 @@ body{
   letter-spacing:0.2em;
   transform:scale(1.03);
 }
+
 .cursor {
   position: fixed;
   width: 10px;
