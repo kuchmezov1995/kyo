@@ -75,3 +75,13 @@ document.addEventListener("mousemove", (e) => {
   cursor.style.left = e.clientX + "px";
   cursor.style.top = e.clientY + "px";
 });
+document.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth / 2 - e.clientX) * 0.01;
+  const y = (window.innerHeight / 2 - e.clientY) * 0.01;
+
+  document.querySelector(".avatar-wrap").style.transform = 
+    `translate(${x}px, ${y}px)`;
+
+  document.querySelector(".title").style.transform = 
+    `translate(${x * 0.5}px, ${y * 0.5}px)`;
+});
