@@ -157,3 +157,15 @@ body{
   letter-spacing:0.2em;
   transform:scale(1.03);
 }
+.cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: white;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  box-shadow: 0 0 20px rgba(255,255,255,0.6);
+  transition: transform 0.08s linear;
+}
