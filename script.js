@@ -70,18 +70,21 @@ animate();
 // ===== CUSTOM CURSOR =====
 
 const cursor = document.querySelector(".cursor");
+const trail = document.querySelector(".cursor-trail");
 
 document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-});
-document.addEventListener("mousemove", (e) => {
-  const x = (window.innerWidth / 2 - e.clientX) * 0.01;
-  const y = (window.innerHeight / 2 - e.clientY) * 0.01;
 
-  document.querySelector(".avatar-wrap").style.transform = 
-    `translate(${x}px, ${y}px)`;
+  const x = e.clientX;
+  const y = e.clientY;
 
-  document.querySelector(".title").style.transform = 
-    `translate(${x * 0.5}px, ${y * 0.5}px)`;
+  // основной курсор
+  cursor.style.left = x + "px";
+  cursor.style.top = y + "px";
+
+  // хвост с задержкой
+  setTimeout(() => {
+    trail.style.left = x + "px";
+    trail.style.top = y + "px";
+  }, 60);
+
 });
