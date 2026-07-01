@@ -65,10 +65,12 @@ body::after {
 
 
 
-.hero{
+.hero {
     position:relative;
     z-index:2;
     
+    text-align: center;
+
     width:min(430px,90%);
     margin: auto;
     
