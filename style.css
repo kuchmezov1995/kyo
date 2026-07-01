@@ -212,58 +212,6 @@ nav a:hover::before {
 
 
 
-.status{
-
-position:absolute;
-
-left:40px;
-
-bottom:35px;
-
-font-size:11px;
-
-letter-spacing:.25em;
-
-display:flex;
-
-align-items:center;
-
-gap:10px;
-
-opacity:.65;
-
-}
-
-.status span{
-
-width:8px;
-
-height:8px;
-
-background:white;
-
-border-radius:50%;
-
-animation:blink 2s infinite;
-
-}
-
-.clock{
-
-position:absolute;
-
-top:35px;
-
-right:40px;
-
-font-size:12px;
-
-letter-spacing:.25em;
-
-opacity:.55;
-
-}
-
 .glow{
 
 position:absolute;
