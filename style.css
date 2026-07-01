@@ -583,20 +583,10 @@ body::before {
     will-change:transform,opacity;
 }
 
-@keyframes floatSymbol{
-
-    0%{
-        transform:translateY(0px) rotate(var(--r));
-    }
-
-    50%{
-        transform:translateY(-6px) rotate(var(--r));
-    }
-
-    100%{
-        transform:translateY(0px) rotate(var(--r));
-    }
-
+@keyframes floatSymbol {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-6px); }
+    100% { transform: translateY(0px); }
 }
 
 .hidden-layer {
@@ -610,6 +600,7 @@ body::before {
 
 .hidden-item {
     transform:
+        translateY(var(--float, 0px))
         rotateX(var(--rx))
         rotateY(var(--ry))
         rotateZ(var(--rz));
