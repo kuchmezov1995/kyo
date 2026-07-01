@@ -23,18 +23,33 @@ const load = setInterval(() => {
 }, 60);
 
 // simple canvas background (safe)
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
+let stars = [];
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+for (let i = 0; i < 80; i++) {
+  stars.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 1.2,
+    vx: (Math.random() - 0.5) * 0.2,
+    vy: (Math.random() - 0.5) * 0.2
+  });
+}
 
-function draw(){
-  ctx.fillStyle = "rgba(0,0,0,0.2)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
+function draw() {
 
-  ctx.fillStyle = "white";
-  ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 1,1);
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  stars.forEach(s => {
+    s.x += s.vx;
+    s.y += s.vy;
+
+    if (s.x < 0 || s.x > canvas.width) s.vx *= -1;
+    if (s.y < 0 || s.y > canvas.height) s.vy *= -1;
+
+    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fillRect(s.x, s.y, s.r, s.r);
+  });
 
   requestAnimationFrame(draw);
 }
