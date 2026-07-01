@@ -79,7 +79,7 @@ resizeCanvas();
 window.addEventListener("resize", resizeCanvas);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-});
+);
 
 let particles = [];
 
