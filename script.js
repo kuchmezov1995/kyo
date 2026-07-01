@@ -4,14 +4,19 @@ const percent = document.getElementById("percent");
 const app = document.querySelector(".app");
 
 // ===== LOADER =====
+const loader = document.getElementById("loader");
+const app = document.querySelector(".app");
+const percent = document.getElementById("percent");
 
 let p = 0;
 
 const load = setInterval(() => {
-  p += Math.floor(Math.random() * 8);
+  p += Math.random() * 10;
 
   if (p >= 100) {
     p = 100;
+    percent.textContent = "100%";
+
     clearInterval(load);
 
     setTimeout(() => {
@@ -20,14 +25,13 @@ const load = setInterval(() => {
       setTimeout(() => {
         loader.style.display = "none";
         app.classList.add("show");
-      }, 800);
+      }, 600);
 
-    }, 400);
+    }, 300);
   }
 
-  percent.textContent = p + "%";
-}, 120);
-
+  percent.textContent = Math.floor(p) + "%";
+}, 80);
 // ===== SIMPLE PARTICLES / LIGHT FX =====
 const canvas = document.getElementById("fx");
 const ctx = canvas.getContext("2d");
