@@ -1,64 +1,29 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>KYO</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css">
-</head>
-
 <body>
 
 <div class="loader" id="loader">
-  <div class="percent" id="percent"></div>
+  <div class="percent" id="percent">0%</div>
 </div>
 
 <canvas id="fx"></canvas>
 
 <main class="app">
-    
-  <!-- LOADER -->
-  <div class="loader" id="loader">
-    <div class="loader-inner">
-      <div class="glitch">KYO</div>
-      <div class="bar"></div>
-      <div class="percent" id="percent">0%</div>
-    </div>
+
+  <div class="avatar-wrap">
+    <img src="assets/avatar.png" class="avatar">
+    <div class="ring"></div>
   </div>
 
-  <!-- BACKGROUND CANVAS -->
-  <canvas id="fx"></canvas>
+  <h1 class="title">KYO</h1>
+  <p class="subtitle">DIGITAL CREATOR</p>
 
-  <!-- NOISE -->
-  <div class="noise"></div>
+  <div class="links">
+    <a href="#">Telegram</a>
+    <a href="#">Instagram</a>
+    <a href="#">GitHub</a>
+    <a href="#">Discord</a>
+  </div>
 
-  <!-- MAIN -->
-  <main class="app">
+</main>
 
-    <div class="avatar-wrap">
-      <img src="assets/avatar.png" class="avatar" />
-      <div class="ring"></div>
-    </div>
-
-    <h1 class="title">KYO</h1>
-    <p class="subtitle">DIGITAL CREATOR</p>
-
-    <div class="links">
-      <a href="#">Telegram</a>
-      <a href="#">Instagram</a>
-      <a href="#">GitHub</a>
-      <a href="#">Discord</a>
-    </div>
-
-  </main>
-
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
-
-</html>
