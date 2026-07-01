@@ -602,3 +602,16 @@ body::before {
 .hidden-layer {
     perspective: 900px;
 }
+
+.hidden-item {
+    position: absolute;
+    transform-style: preserve-3d;
+}
+
+.hidden-item {
+    transform:
+        rotateX(var(--rx))
+        rotateY(var(--ry))
+        rotateZ(var(--rz));
+}
+
