@@ -82,8 +82,8 @@ function animate() {
         p.x += p.dx;
         p.y += p.dy;
 
-        if (p.x < 0 || p.x > canvas.width) p.x = Math.random() * canvas.width;
-        if (p.y < 0 || p.y > canvas.height) p.y = Math.random() * canvas.height;
+        if (p.x < 0 || p.x > canvas.width) p.dx *= -1;
+        if (p.y < 0 || p.y > canvas.height) p.dy *= -1;
 
         ctx.fillStyle = "rgba(255,255,255,0.15)";
         ctx.beginPath();
