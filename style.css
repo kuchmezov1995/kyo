@@ -504,3 +504,11 @@ body {
 * {
     cursor: none !important;
 }
+
+body {
+    background: radial-gradient(
+        circle at 20% 20%,
+        #0a0a0a 0%,
+        #000000 60%
+    );
+}
