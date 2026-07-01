@@ -216,3 +216,5 @@ item.style.transform = `
 item.style.animation = `floatSymbol ${8 + Math.random() * 8}s ease-in-out infinite`;
 
 layer.appendChild(item);
+}
+
