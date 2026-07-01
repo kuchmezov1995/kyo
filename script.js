@@ -1,29 +1,25 @@
-
-/* =========================
-   SCROLL RESET
-========================= */
 window.scrollTo(0, 0);
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
-/* =========================
-   FADE IN
-========================= */
+// =======================
+// FADE IN
+// =======================
 window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 });
 
-/* =========================
-   NAV DELAY
-========================= */
-document.querySelectorAll("nav a").forEach((btn, i) => {
-    btn.style.animationDelay = `${i * 120 + 800}ms`;
+// =======================
+// NAV ANIMATION
+// =======================
+document.querySelectorAll("nav a").forEach((button, index) => {
+    button.style.animationDelay = `${index * 120 + 800}ms`;
 });
 
-/* =========================
-   CURSOR SYSTEM
-========================= */
+// =======================
+// CURSOR SYSTEM
+// =======================
 const cursor = document.querySelector(".cursor");
 const glow = document.querySelector(".mouse-glow");
 
@@ -53,9 +49,9 @@ function animateCursor() {
 }
 animateCursor();
 
-/* =========================
-   PARTICLES
-========================= */
+// =======================
+// BACKGROUND PARTICLES
+// =======================
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
@@ -94,9 +90,9 @@ function animate() {
 }
 animate();
 
-/* =========================
-   HOVER INTERACTION
-========================= */
+// =======================
+// MOUSE INTERACTION (HIDDEN ITEMS)
+// =======================
 document.addEventListener("mousemove", (e) => {
 
     document.querySelectorAll(".hidden-item").forEach(el => {
@@ -109,13 +105,11 @@ document.addEventListener("mousemove", (e) => {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         let radius = 260;
+
         if (el.dataset.type === "music") radius = 180;
-        if (el.dataset.type === "egg") radius = 120;
+        if (el.dataset.type === "egg") radius = 100;
 
         const intensity = Math.max(0, 1 - distance / radius);
-
-        const rot = el.dataset.rot || 0;
-        const skew = el.dataset.skew || 0;
 
         el.style.opacity = 0.02 + intensity * 0.7;
 
@@ -124,12 +118,12 @@ document.addEventListener("mousemove", (e) => {
 
         el.style.filter = `blur(${2 - intensity * 2}px)`;
 
-        el.style.transform = `
-            scale(${1 + intensity * 0.35})
-            rotate(${rot}deg)
-            skew(${skew}deg)
-        `;
+        const scale = 1 + intensity * 0.35;
+
+        el.style.transform =
+            `scale(${scale}) rotate(${el.dataset.rot || 0}deg)`;
     });
+
 });
 
 /* =========================
