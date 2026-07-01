@@ -23,6 +23,12 @@ const load = setInterval(() => {
 }, 60);
 
 // simple canvas background (safe)
+const canvas = document.getElementById("fx");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
 let stars = [];
 
 for (let i = 0; i < 80; i++) {
