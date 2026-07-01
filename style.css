@@ -271,6 +271,10 @@ nav a:hover::before {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 1;
+    
+    mix-blend-mode: screen;
+    filter: blur(60px);
+    opacity: 0.4;
 }
 
 * {
