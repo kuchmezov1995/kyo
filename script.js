@@ -1,3 +1,4 @@
+alert("JS WORKS");
 const loader = document.getElementById("loader");
 const percent = document.getElementById("percent");
 const app = document.querySelector(".app");
