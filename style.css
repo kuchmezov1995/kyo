@@ -80,3 +80,13 @@ p{
   border:1px solid rgba(255,255,255,0.15);
   margin:8px 0;
 }
+body {
+  opacity: 0;
+  animation: fadeIn 1.2s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
+}
