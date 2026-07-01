@@ -136,51 +136,47 @@ transition: transform .4s, box-shadow .4s;
 }
 
 
+
 .logo {
     font-size: 72px;
     letter-spacing: .35em;
     font-weight: 300;
     margin-bottom: 10px;
+    color: white;
+    
+    animation: logoAppear 1.8s ease;
 
     text-shadow: 0 0 20px rgba(255,255,255,0.08);
 }
 
-.subtitle{
 
-font-size:11px;
 
-letter-spacing:.6em;
 
-opacity:.55;
-
-margin-bottom:55px;
-
-}
-
-nav{
-
-width:100%;
-
-display:flex;
-
-flex-direction:column;
-
-gap:18px;
-
+nav {
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:18px;
 }
 
 nav a {
     color: white;
     text-decoration: none;
+    
     padding: 18px;
     text-align: center;
 
     border-top: 1px solid rgba(168, 85, 247, 0.15);
     border-bottom: 1px solid rgba(168, 85, 247, 0.15);
 
-    transition: .35s;
-
     position: relative;
+    overflow: hidden;
+
+    opacity: 0;
+    transform: translateY(15px);
+    animation: buttonAppear .8s forwards;
+    
+    transition: .35s;
 }
 
 nav a:hover {
@@ -190,6 +186,31 @@ nav a:hover {
     transform: translateY(-2px);
     box-shadow: 0 0 25px rgba(168, 85, 247, 0.12);
 }
+
+nav a::before {
+    content: "";
+    position: absolute;
+    left: -100%;
+    top: 0;
+    width: 60%;
+    height: 100%;
+
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(168, 85, 247, 0.25),
+        transparent
+    );
+
+    transition: .6s;
+}
+
+nav a:hover::before {
+    left: 130%;
+}
+
+
+
 
 .status{
 
@@ -299,15 +320,6 @@ opacity:.2;
 
 }
 
-/* ========================= */
-/* LOGO */
-/* ========================= */
-
-.logo {
-
-    animation: logoAppear 1.8s ease;
-
-}
 
 @keyframes logoAppear {
 
@@ -337,18 +349,6 @@ opacity:.2;
 /* BUTTONS */
 /* ========================= */
 
-nav a {
-
-    opacity: 0;
-
-    transform: translateY(15px);
-
-    animation:
-
-        buttonAppear .8s forwards;
-
-}
-
 @keyframes buttonAppear {
 
     to {
@@ -361,49 +361,6 @@ nav a {
 
 }
 
-nav a::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: -100%;
-
-    top: 0;
-
-    width: 60%;
-
-    height: 100%;
-
-    background:
-
-    linear-gradient(
-
-    90deg,
-
-    transparent,
-
-    rgba(255,255,255,.15),
-
-    transparent);
-
-    transition: .6s;
-
-}
-
-nav a {
-
-    position: relative;
-
-    overflow: hidden;
-
-}
-
-nav a:hover::before {
-
-    left: 130%;
-
-}
 
 /* ========================= */
 /* BACKGROUND GLOW */
@@ -496,10 +453,6 @@ html, body {
     overscroll-behavior: none;
 }
 
-.logo {
-    color: white !important;
-}
-
 
 @keyframes fadeUp {
     from {
@@ -570,15 +523,6 @@ html, body {
 
 }
 
-
-nav a::before {
-    background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(168, 85, 247, 0.25),
-        transparent
-    );
-}
 
 .cursor {
     background: rgba(255,255,255,0.9);
