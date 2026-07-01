@@ -5,65 +5,19 @@ const app = document.querySelector(".app");
 let p = 0;
 
 const load = setInterval(() => {
-
   p += Math.random() * 10;
-
   percent.textContent = Math.floor(p) + "%";
 
   if (p >= 100) {
-    p = 100;
     clearInterval(load);
-
-    setTimeout(() => {
-      loader.style.display = "none";
-      app.classList.add("show");
-    }, 400);
+    loader.style.display = "none";
+    app.classList.add("show");
   }
-
 }, 60);
 
-// simple canvas background (safe)
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let stars = [];
-
-for (let i = 0; i < 80; i++) {
-  stars.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 1.2,
-    vx: (Math.random() - 0.5) * 0.2,
-    vy: (Math.random() - 0.5) * 0.2
-  });
-}
-
-function draw() {
-
-  ctx.fillStyle = "rgba(0,0,0,0.25)";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-  stars.forEach(s => {
-    s.x += s.vx;
-    s.y += s.vy;
-
-    if (s.x < 0 || s.x > canvas.width) s.vx *= -1;
-    if (s.y < 0 || s.y > canvas.height) s.vy *= -1;
-
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
-    ctx.fillRect(s.x, s.y, s.r, s.r);
-  });
-
-  requestAnimationFrame(draw);
-}
-
-draw();
-// ===== CURSOR =====
+/* ===== CURSOR ===== */
 const cursor = document.querySelector(".cursor");
-const trail = document.querySelector(".cursor-trail");
+const trail = document.querySelector(".trail");
 
 document.addEventListener("mousemove", (e) => {
   cursor.style.left = e.clientX + "px";
@@ -72,42 +26,56 @@ document.addEventListener("mousemove", (e) => {
   setTimeout(() => {
     trail.style.left = e.clientX + "px";
     trail.style.top = e.clientY + "px";
-  }, 50);
+  }, 40);
 });
+
+/* ===== PARALLAX ===== */
 document.addEventListener("mousemove", (e) => {
+  const x = (window.innerWidth/2 - e.clientX) * 0.01;
+  const y = (window.innerHeight/2 - e.clientY) * 0.01;
 
-  const x = (window.innerWidth / 2 - e.clientX) * 0.01;
-  const y = (window.innerHeight / 2 - e.clientY) * 0.01;
-
-  const avatar = document.querySelector(".avatar");
-  const title = document.querySelector("h1");
-
-  if (avatar) avatar.style.transform = `translate(${x}px, ${y}px)`;
-  if (title) title.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+  document.querySelector(".avatar").style.transform =
+    `translate(${x}px,${y}px)`;
 });
-setInterval(() => {
 
-  const canvas = document.getElementById("fx");
-  const ctx = canvas.getContext("2d");
+/* ===== CANVAS ===== */
+const canvas = document.getElementById("fx");
+const ctx = canvas.getContext("2d");
 
-  const x1 = Math.random() * canvas.width;
-  const y1 = Math.random() * canvas.height;
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  const x2 = Math.random() * canvas.width;
-  const y2 = Math.random() * canvas.height;
+window.addEventListener("resize", () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+function lightning() {
+  const x1 = Math.random()*canvas.width;
+  const y1 = Math.random()*canvas.height;
+  const x2 = Math.random()*canvas.width;
+  const y2 = Math.random()*canvas.height;
 
   ctx.beginPath();
-  ctx.moveTo(x1, y1);
+  ctx.moveTo(x1,y1);
 
-  for (let i = 0; i < 6; i++) {
-    const x = x1 + (x2 - x1) * (i / 6) + (Math.random() - 0.5) * 30;
-    const y = y1 + (y2 - y1) * (i / 6) + (Math.random() - 0.5) * 30;
-    ctx.lineTo(x, y);
+  for(let i=0;i<6;i++){
+    const x = x1 + (x2-x1)*(i/6) + (Math.random()-0.5)*40;
+    const y = y1 + (y2-y1)*(i/6) + (Math.random()-0.5)*40;
+    ctx.lineTo(x,y);
   }
 
-  ctx.strokeStyle = "rgba(255,255,255,0.8)";
-  ctx.shadowBlur = 20;
-  ctx.shadowColor = "white";
+  ctx.strokeStyle="white";
+  ctx.shadowBlur=20;
   ctx.stroke();
+}
 
-}, 2500);
+setInterval(lightning,2500);
+
+function animate(){
+  ctx.fillStyle="rgba(0,0,0,0.2)";
+  ctx.fillRect(0,0,canvas.width,canvas.height);
+  requestAnimationFrame(animate);
+}
+
+animate();
