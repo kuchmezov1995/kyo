@@ -582,3 +582,19 @@ body::before {
 
     will-change:transform,opacity;
 }
+
+@keyframes floatSymbol{
+
+    0%{
+        transform:translateY(0px) rotate(var(--r));
+    }
+
+    50%{
+        transform:translateY(-6px) rotate(var(--r));
+    }
+
+    100%{
+        transform:translateY(0px) rotate(var(--r));
+    }
+
+}
