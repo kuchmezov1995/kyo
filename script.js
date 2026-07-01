@@ -1,25 +1,29 @@
+
+/* =========================
+   SCROLL RESET
+========================= */
 window.scrollTo(0, 0);
 if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
 }
 
-// =======================
-// FADE IN
-// =======================
+/* =========================
+   FADE IN
+========================= */
 window.addEventListener("load", () => {
     document.body.classList.add("loaded");
 });
 
-// =======================
-// NAV ANIMATION
-// =======================
-document.querySelectorAll("nav a").forEach((button, index) => {
-    button.style.animationDelay = `${index * 120 + 800}ms`;
+/* =========================
+   NAV DELAY
+========================= */
+document.querySelectorAll("nav a").forEach((btn, i) => {
+    btn.style.animationDelay = `${i * 120 + 800}ms`;
 });
 
-// =======================
-// CURSOR SYSTEM
-// =======================
+/* =========================
+   CURSOR SYSTEM
+========================= */
 const cursor = document.querySelector(".cursor");
 const glow = document.querySelector(".mouse-glow");
 
@@ -49,9 +53,9 @@ function animateCursor() {
 }
 animateCursor();
 
-// =======================
-// BACKGROUND PARTICLES
-// =======================
+/* =========================
+   PARTICLES
+========================= */
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
@@ -90,9 +94,9 @@ function animate() {
 }
 animate();
 
-// =======================
-// MOUSE INTERACTION (HIDDEN ITEMS)
-// =======================
+/* =========================
+   HOVER INTERACTION
+========================= */
 document.addEventListener("mousemove", (e) => {
 
     document.querySelectorAll(".hidden-item").forEach(el => {
@@ -105,11 +109,13 @@ document.addEventListener("mousemove", (e) => {
         const distance = Math.sqrt(dx * dx + dy * dy);
 
         let radius = 260;
-
         if (el.dataset.type === "music") radius = 180;
-        if (el.dataset.type === "egg") radius = 100;
+        if (el.dataset.type === "egg") radius = 120;
 
         const intensity = Math.max(0, 1 - distance / radius);
+
+        const rot = el.dataset.rot || 0;
+        const skew = el.dataset.skew || 0;
 
         el.style.opacity = 0.02 + intensity * 0.7;
 
@@ -118,21 +124,23 @@ document.addEventListener("mousemove", (e) => {
 
         el.style.filter = `blur(${2 - intensity * 2}px)`;
 
-        const scale = 1 + intensity * 0.35;
-
-        el.style.transform =
-            `scale(${scale}) rotate(${el.dataset.rot || 0}deg)`;
+        el.style.transform = `
+            scale(${1 + intensity * 0.35})
+            rotate(${rot}deg)
+            skew(${skew}deg)
+        `;
     });
-
 });
 
-// =======================
-// HIDDEN SYMBOLS (RANDOM SPAWN)
-// =======================
+/* =========================
+   SYMBOL GENERATION
+========================= */
 const layer = document.querySelector(".hidden-layer");
 
-// categories
-const symbols = ["✦","✧","✶","✹","◆","◇","◈","◎","◉","△","▽","╳","╱","╲","○","●","◌"];
+const symbols = [
+"✦","✧","✶","✹","◆","◇","◈","◎","◉",
+"△","▽","╳","╱","╲","○","●","◌"
+];
 
 const music = [
 "808","404","NULL","VOID","BPM","MIDI","LOOP","REC",
@@ -163,43 +171,47 @@ for (let i = 0; i < COUNT; i++) {
     const typeRandom = Math.random();
     const sizeRandom = Math.random();
 
-    // TYPE
+    let type;
+
     if (typeRandom < 0.60) {
-        item.dataset.type = "symbol";
+        type = "symbol";
         item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
     } else if (typeRandom < 0.90) {
-        item.dataset.type = "music";
+        type = "music";
         item.innerText = music[Math.floor(Math.random() * music.length)];
     } else {
-        item.dataset.type = "egg";
+        type = "egg";
         item.innerText = eggs[Math.floor(Math.random() * eggs.length)];
     }
 
-    // RANDOM POSITION (БЕЗ КЛАСТЕРОВ)
-    const x = Math.random() * 100;
-    const y = Math.random() * 100;
+    item.dataset.type = type;
 
-    item.style.left = x + "%";
-    item.style.top = y + "%";
+    /* POSITION */
+    item.style.left = Math.random() * 100 + "%";
+    item.style.top = Math.random() * 100 + "%";
 
-    // SIZE
-    let size;
-
-    if (sizeRandom < 0.60) {
-        size = 8 + Math.random() * 14;
-    } else if (sizeRandom < 0.90) {
-        size = 14 + Math.random() * 10;
-    } else {
-        size = 22 + Math.random() * 18;
-    }
+    /* SIZE */
+    let size =
+        sizeRandom < 0.6 ? 10 + Math.random() * 12 :
+        sizeRandom < 0.9 ? 14 + Math.random() * 10 :
+                           20 + Math.random() * 16;
 
     item.style.fontSize = size + "px";
 
-    // ROTATION
+    /* ROTATION + SKEW (КЛЮЧ К “НЕ ПАРАЛЛЕЛЬНО”) */
     const rot = Math.random() * 360;
-    item.dataset.rot = rot;
+    const skew = (Math.random() - 0.5) * 35;
 
-    item.style.animation = `floatSymbol ${8 + Math.random() * 8}s ease-in-out infinite`;
+    item.dataset.rot = rot;
+    item.dataset.skew = skew;
+
+    item.style.transform = `
+        rotate(${rot}deg)
+        skew(${skew}deg)
+    `;
+
+    /* FLOAT */
+    item.style.animation = `floatSymbol ${6 + Math.random() * 10}s ease-in-out infinite`;
 
     layer.appendChild(item);
 }
