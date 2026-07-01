@@ -257,3 +257,190 @@ opacity:.2;
 }
 
 }
+/* ========================= */
+/* PAGE APPEAR */
+/* ========================= */
+
+body {
+
+    opacity: 0;
+
+    transition: opacity 1.4s ease;
+
+}
+
+body.loaded {
+
+    opacity: 1;
+
+}
+
+/* ========================= */
+/* LOGO */
+/* ========================= */
+
+.logo {
+
+    animation: logoAppear 1.8s ease;
+
+}
+
+@keyframes logoAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(20px);
+
+        filter: blur(12px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+        filter: blur(0);
+
+    }
+
+}
+
+/* ========================= */
+/* BUTTONS */
+/* ========================= */
+
+nav a {
+
+    opacity: 0;
+
+    transform: translateY(15px);
+
+    animation:
+
+        buttonAppear .8s forwards;
+
+}
+
+@keyframes buttonAppear {
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+nav a::before {
+
+    content: "";
+
+    position: absolute;
+
+    left: -100%;
+
+    top: 0;
+
+    width: 60%;
+
+    height: 100%;
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    rgba(255,255,255,.15),
+
+    transparent);
+
+    transition: .6s;
+
+}
+
+nav a {
+
+    position: relative;
+
+    overflow: hidden;
+
+}
+
+nav a:hover::before {
+
+    left: 130%;
+
+}
+
+/* ========================= */
+/* AVATAR */
+/* ========================= */
+
+.avatar {
+
+    transition:
+
+    transform .4s,
+
+    box-shadow .4s;
+
+}
+
+.avatar:hover {
+
+    transform: scale(1.03);
+
+    box-shadow:
+
+    0 0 40px rgba(255,255,255,.15);
+
+}
+
+.avatar-ring {
+
+    transition: .5s;
+
+}
+
+.avatar-wrapper:hover .avatar-ring {
+
+    inset: -14px;
+
+    opacity: .8;
+
+}
+
+/* ========================= */
+/* BACKGROUND GLOW */
+/* ========================= */
+
+.glow {
+
+    animation:
+
+    floatGlow 12s ease-in-out infinite;
+
+}
+
+@keyframes floatGlow {
+
+    50% {
+
+        transform:
+
+        scale(1.15)
+
+        translateY(-30px);
+
+    }
+
+}
