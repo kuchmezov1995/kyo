@@ -142,3 +142,23 @@ function randomLightning() {
 }
 
 setInterval(randomLightning, 4000);
+function flash() {
+  const f = document.createElement("div");
+
+  f.style.position = "fixed";
+  f.style.inset = 0;
+  f.style.background = "white";
+  f.style.opacity = "0.08";
+  f.style.pointerEvents = "none";
+  f.style.zIndex = 9999;
+
+  document.body.appendChild(f);
+
+  setTimeout(() => {
+    f.remove();
+  }, 120);
+}
+
+setTimeout(() => {
+  flash();
+}, 1200);
