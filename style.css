@@ -353,16 +353,3 @@ nav a:hover::before {
     50% { filter: brightness(1.05); }
 }
 
-
-@keyframes floatSymbol {
-    0% {
-        transform: translateY(0px) rotate(var(--rot));
-    }
-    50% {
-        transform: translateY(-15px) rotate(var(--rot));
-    }
-    100% {
-        transform: translateY(0px) rotate(var(--rot));
-    }
-}
-
