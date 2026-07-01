@@ -199,7 +199,7 @@ if (typeRandom < 0.60) {
     item.innerText =
         symbol[Math.floor(Math.random() * symbol.length)];
 
-} else if (random < 0.90) {
+} else if (typeRandom < 0.90) {
 
     item.dataset.type = "music";
 
@@ -231,7 +231,7 @@ if (sizeRandom < 0.60){
 
     size = 8 + Math.random() * 14;
 
-}else if(random < 0.90){
+}else if(sizeRandom < 0.90){
 
     size = 14 + Math.random() * 10;
 
