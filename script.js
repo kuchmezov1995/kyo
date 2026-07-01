@@ -142,7 +142,7 @@ const symbols = [
 const music = [
     "808","404","NULL","VOID","BPM","MIDI","LOOP","REC",
     "FX","AUX","WAV","GAIN","LFO","SYNC","MIX","EQ","MASTER",
-    "REVERB","DELAY","SATURATION","LIMITER","OSC"
+    "REVERB","DELAY","SATURATION","LIMITER","OSC", "KYO", "BEAT", "PLUGIN"
 ];
 
 // Пасхалки
