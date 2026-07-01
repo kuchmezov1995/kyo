@@ -128,13 +128,38 @@ document.addEventListener("mousemove", (e) => {
 
 const layer = document.querySelector(".hidden-layer");
 
+// =======================
+// Categories
+// =======================
+
+// Декоративные символы
 const symbols = [
-"✦","✧","✶","✹","◆","◇","◈","◎","◉",
-"△","▽","╳","╱","╲","01","10","<>",
-"{}","//","K","Y","O","404","VOID","NULL"
+    "✦","✧","✶","✹","◆","◇","◈","◎","◉",
+    "△","▽","╳","╱","╲","○","●","◌"
 ];
 
-const COUNT = 80;
+// Музыкальные термины
+const music = [
+    "808","404","NULL","VOID","BPM","MIDI","LOOP","REC",
+    "FX","AUX","WAV","GAIN","LFO","SYNC","MIX","EQ","MASTER",
+    "REVERB","DELAY","SATURATION","LIMITER","OSC"
+];
+
+// Пасхалки
+const easterEggs = [
+    "PROJECT SAVED",
+    "EXPORT COMPLETE",
+    "24 BIT",
+    "48 kHz",
+    "BPM:140",
+    "KEY:Gm",
+    "NO CLIPPING",
+    "EXPORT_v12.wav",
+    "final_mix_FINAL_v7.wav",
+    "∞"
+];
+
+const COUNT = 90;
 
 for(let i=0;i<COUNT;i++){
 
@@ -142,13 +167,44 @@ for(let i=0;i<COUNT;i++){
 
     item.className="hidden-item";
 
-    item.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+    const random = Math.random();
+
+if (random < 0.60) {
+
+    item.innerText =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+} else if (random < 0.90) {
+
+    item.innerText =
+        music[Math.floor(Math.random() * music.length)];
+
+} else {
+
+    item.innerText =
+        easterEggs[Math.floor(Math.random() * easterEggs.length)];
+
+}
 
     item.style.left=Math.random()*100+"%";
 
     item.style.top=Math.random()*100+"%";
 
-    const size=12+Math.random()*26;
+    let size;
+
+if (random < 0.60){
+
+    size = 8 + Math.random() * 14;
+
+}else if(random < 0.90){
+
+    size = 14 + Math.random() * 10;
+
+}else{
+
+    size = 22 + Math.random() * 18;
+
+}
 
     item.style.fontSize=size+"px";
 
