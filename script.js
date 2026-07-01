@@ -215,3 +215,4 @@ item.style.transform = `rotate(${rot}deg)`;
 item.style.animation = `floatSymbol ${6 + Math.random() * 6}s ease-in-out infinite`;
 
 layer.appendChild(item);
+}
