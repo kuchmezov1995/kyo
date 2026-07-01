@@ -77,16 +77,13 @@ animation:pulse 4s infinite;
 
 }
 
-.logo{
+.logo {
+    font-size: 72px;
+    letter-spacing: .35em;
+    font-weight: 300;
+    margin-bottom: 10px;
 
-font-size:72px;
-
-letter-spacing:.35em;
-
-font-weight:300;
-
-margin-bottom:10px;
-
+    text-shadow: 0 0 20px rgba(255,255,255,0.08);
 }
 
 .subtitle{
