@@ -1,3 +1,4 @@
+alert("JS STARTED");
 console.log("SCRIPT OK");
 
 // ===== LOADER =====
