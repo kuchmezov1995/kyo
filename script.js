@@ -11,26 +11,33 @@ document.querySelectorAll("nav a").forEach((button, index) => {
 });
 
 const cursor = document.querySelector(".cursor");
-const dot = document.querySelector(".cursor-dot");
-
-document.addEventListener("mousemove", (e) => {
-
-    const x = e.clientX;
-    const y = e.clientY;
-
-    dot.style.left = x + "px";
-    dot.style.top = y + "px";
-
-    cursor.style.left = x + "px";
-    cursor.style.top = y + "px";
-
-});
-
 const glow = document.querySelector(".mouse-glow");
 
+// стартовая позиция (центр экрана)
+let mouseX = window.innerWidth / 2;
+let mouseY = window.innerHeight / 2;
+
+// 1. записываем позицию мыши
 document.addEventListener("mousemove", (e) => {
-
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
-
+    mouseX = e.clientX;
+    mouseY = e.clientY;
 });
+
+// 2. постоянно двигаем курсор к этой позиции
+function animateCursor() {
+
+    if (cursor) {
+        cursor.style.left = mouseX + "px";
+        cursor.style.top = mouseY + "px";
+    }
+
+    if (glow) {
+        glow.style.left = mouseX + "px";
+        glow.style.top = mouseY + "px";
+    }
+
+    requestAnimationFrame(animateCursor);
+}
+
+// запускаем анимацию
+animateCursor();
