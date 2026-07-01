@@ -200,9 +200,29 @@ if (random < 0.60) {
 
 }
 
-    item.style.left=Math.random()*100+"%";
+ // Выбираем один из 10 центров
+const clusters = [
+    {x:15,y:20},
+    {x:32,y:35},
+    {x:70,y:18},
+    {x:82,y:40},
+    {x:18,y:72},
+    {x:42,y:82},
+    {x:64,y:65},
+    {x:84,y:78},
+    {x:50,y:50},
+    {x:8,y:48}
+];
 
-    item.style.top=Math.random()*100+"%";
+const cluster = clusters[Math.floor(Math.random()*clusters.length)];
+
+const spread = 10;
+
+item.style.left =
+(cluster.x + (Math.random()-0.5)*spread) + "%";
+
+item.style.top =
+(cluster.y + (Math.random()-0.5)*spread) + "%";
 
     let size;
 
