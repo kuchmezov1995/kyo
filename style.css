@@ -297,10 +297,7 @@ nav a:hover::before {
     
     filter:blur(2px);
 
-    transition:
-        opacity .35s ease,
-        transform .35s ease,
-        filter .35s ease;
+    transition: opacity .35s ease, transform .35s ease, filter .35s ease;
     
     will-change:transform,opacity;
 }
@@ -327,120 +324,33 @@ nav a:hover::before {
 
 
 @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px);
-    }
-    to { opacity: 1; transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
+@keyframes logoAppear {
+    from { opacity: 0; transform: translateY(20px); filter: blur(12px);  }
+    to { opacity: 1; transform: translateY(0);  filter: blur(0);  }
+}
 
+@keyframes buttonAppear {
+    to { opacity: 1; transform: translateY(0); }
+}
 
 @keyframes pulse{
-
-50%{
-
-transform:scale(1.05);
-
-opacity:.4;
-
+    50% { transform:scale(1.05); opacity:.4; }
 }
 
+@keyframes floatGlow {
+    50% { transform: scale(1.15) translateY(-30px); }
 }
 
 @keyframes blink{
-
-50%{
-
-opacity:.2;
-
+    50%{ opacity:.2; }
 }
-
-}
-
-
-@keyframes logoAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(20px);
-
-        filter: blur(12px);
-
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-        filter: blur(0);
-
-    }
-
-}
-
-/* ========================= */
-/* BUTTONS */
-/* ========================= */
-
-@keyframes buttonAppear {
-
-    to {
-
-        opacity: 1;
-
-        transform: translateY(0);
-
-    }
-
-}
-
-
-/* ========================= */
-/* BACKGROUND GLOW */
-/* ========================= */
-
-@keyframes floatGlow {
-
-    50% {
-
-        transform:
-
-        scale(1.15)
-
-        translateY(-30px);
-
-    }
-
-}
-
-/* ========================= */
-/* NOISE OVERLAY */
-/* ========================= */
 
 @keyframes breathe {
-    50% {
-        filter: brightness(1.05);
-    }
+    50% { filter: brightness(1.05); }
 }
 
-
-@keyframes floatSymbol{
-
-    0%{
-        transform:translateY(0px) rotate(var(--r));
-    }
-
-    50%{
-        transform:translateY(-6px) rotate(var(--r));
-    }
-
-    100%{
-        transform:translateY(0px) rotate(var(--r));
-    }
-
-}
 
