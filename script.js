@@ -92,3 +92,24 @@ function animate() {
 
 animate();
 
+document.addEventListener("mousemove", (e) => {
+
+    document.querySelectorAll(".hidden-item").forEach(el => {
+
+        const rect = el.getBoundingClientRect();
+
+        const dx = e.clientX - (rect.left + rect.width / 2);
+        const dy = e.clientY - (rect.top + rect.height / 2);
+
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 120) {
+            el.style.opacity = "0.35";
+            el.style.filter = "blur(0px)";
+        } else {
+            el.style.opacity = "0.02";
+            el.style.filter = "blur(1px)";
+        }
+    });
+
+});
