@@ -111,24 +111,22 @@ document.addEventListener("mousemove", (e) => {
 
         const intensity = Math.max(0, 1 - distance / radius);
 
-        el.style.opacity = 0.02 + intensity * 0.7;
+        // Прозрачность
+        el.style.opacity = 0.01 + intensity * 0.65;
 
+        // Цвет
         const shade = Math.floor(120 + intensity * 135);
-        el.style.color = `rgb(${shade},${shade},${shade})`;
+        el.style.color = `rgb(${shade}, ${shade}, ${shade})`;
 
+        // Размытие
         el.style.filter = `blur(${2 - intensity * 2}px)`;
 
+        // Увеличение
         const scale = 1 + intensity * 0.35;
 
-el.style.opacity = 0.02 + intensity * 0.7;
+        el.style.transform =
+            `scale(${scale}) rotate(${getComputedStyle(el).getPropertyValue("--r")})`;
 
-el.style.filter = `blur(${2 - intensity * 2}px)`;
-
-// 2D version
-el.style.transform = `
-    scale(${1 + intensity * 0.35})
-    rotate(${el.dataset.rot || 0}deg)
-`;
     });
 
 });
@@ -147,7 +145,7 @@ const music = [
 "REVERB","DELAY","SATURATION","LIMITER","OSC","KYO","BEAT","PLUGIN"
 ];
 
-const eggs = [
+const easterEggs = [
 "PROJECT SAVED",
 "EXPORT COMPLETE",
 "24 BIT",
@@ -167,20 +165,30 @@ for (let i = 0; i < COUNT; i++) {
     const item = document.createElement("span");
     item.className = "hidden-item";
 
-    const typeRandom = Math.random();
-    const sizeRandom = Math.random();
+  const random = Math.random();
 
-    // TYPE
-    if (typeRandom < 0.60) {
-        item.dataset.type = "symbol";
-        item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
-    } else if (typeRandom < 0.90) {
-        item.dataset.type = "music";
-        item.innerText = music[Math.floor(Math.random() * music.length)];
-    } else {
-        item.dataset.type = "egg";
-        item.innerText = eggs[Math.floor(Math.random() * eggs.length)];
-    }
+if (random < 0.60) {
+
+    item.dataset.type = "symbol";
+
+    item.innerText =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+} else if (random < 0.90) {
+
+    item.dataset.type = "music";
+
+    item.innerText =
+        music[Math.floor(Math.random() * music.length)];
+
+} else {
+
+    item.dataset.type = "egg";
+
+    item.innerText =
+        easterEggs[Math.floor(Math.random() * easterEggs.length)];
+
+}
 
     // RANDOM POSITION (БЕЗ КЛАСТЕРОВ)
     const x = Math.random() * 100;
@@ -190,16 +198,21 @@ for (let i = 0; i < COUNT; i++) {
     item.style.top = y + "%";
 
     // SIZE
-    let size;
+   let size;
 
-    if (sizeRandom < 0.60) {
-        size = 8 + Math.random() * 14;
-    } else if (sizeRandom < 0.90) {
-        size = 14 + Math.random() * 10;
-    } else {
-        size = 22 + Math.random() * 18;
-    }
+if (random < 0.60){
 
+    size = 8 + Math.random() * 14;
+
+}else if(random < 0.90){
+
+    size = 14 + Math.random() * 10;
+
+}else{
+
+    size = 22 + Math.random() * 18;
+
+}
     item.style.fontSize = size + "px";
 
 // ROTATION 2D (SAFE VERSION)
