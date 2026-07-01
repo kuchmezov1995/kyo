@@ -514,3 +514,16 @@ html, body {
 .logo {
     color: white !important;
 }
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(
+        circle at var(--x, 50%) var(--y, 50%),
+        rgba(255,255,255,0.06),
+        transparent 40%
+    );
+    pointer-events: none;
+    transition: 0.1s;
+}
