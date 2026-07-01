@@ -209,11 +209,9 @@ item.dataset.roty = rotY;
 item.dataset.rotz = rotZ;
 
 // применяем 3D трансформацию
-item.style.transform = `
-    rotateX(${rotX}deg)
-    rotateY(${rotY}deg)
-    rotateZ(${rotZ}deg)
-`;
+item.style.setProperty("--rx", rotX + "deg");
+item.style.setProperty("--ry", rotY + "deg");
+item.style.setProperty("--rz", rotZ + "deg");
 
 // анимация плавания
 item.style.animation = `floatSymbol ${8 + Math.random() * 8}s ease-in-out infinite`;
