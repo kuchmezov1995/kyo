@@ -115,7 +115,7 @@ animate();
 // =======================
 document.addEventListener("mousemove", (e) => {
 
-    hiddenItems.forEach(el => {
+    document.querySelectorAll(".hidden-item").forEach(el => {
 
         const rect = el.getBoundingClientRect();
 
@@ -131,17 +131,17 @@ document.addEventListener("mousemove", (e) => {
 
         const intensity = Math.max(0, 1 - distance / radius);
 
-        el.style.opacity = 0.02 + intensity * 0.7;
+        el.style.opacity = 0.05 + intensity * 0.95;
 
         const shade = Math.floor(120 + intensity * 135);
         el.style.color = `rgb(${shade},${shade},${shade})`;
 
-        el.style.filter = `blur(${2 - intensity * 2}px)`;
+        el.style.filter = `blur(${1.5 - intensity * 1.5}px)`;
 
         const scale = 1 + intensity * 0.35;
 
         el.style.transform =
-            `scale(${scale}) rotate(${el.dataset.rot || 0}deg)`;
+            `scale(${scale}) rotate(${el.dataset.rot || 0}deg) skew(${el.dataset.skew || 0}deg)`;
     });
 
 });
