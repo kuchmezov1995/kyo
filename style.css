@@ -207,3 +207,11 @@ body {
   position: relative;
   z-index: 2;
 }
+.app {
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.app.show {
+  opacity: 1;
+}
