@@ -22,8 +22,13 @@ document.querySelectorAll("nav a").forEach((button, index) => {
 // =======================
 // CURSOR SYSTEM
 // =======================
-const cursor = document.querySelector(".cursor");
-const glow = document.querySelector(".mouse-glow");
+let cursor, glow;
+
+if (hasMouse) {
+    cursor = document.querySelector(".cursor");
+    glow = document.querySelector(".mouse-glow");
+}
+const hiddenItems = document.querySelectorAll(".hidden-item");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
@@ -49,7 +54,7 @@ function animateCursor() {
 
     requestAnimationFrame(animateCursor);
 }
-animateCursor();
+if (hasMouse) animateCursor();
 
 // =======================
 // BACKGROUND PARTICLES
@@ -57,10 +62,21 @@ animateCursor();
 const canvas = document.getElementById("bg");
 const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+function resizeCanvas() {
+    const dpr = window.devicePixelRatio || 1;
 
-window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth * dpr;
+    canvas.height = window.innerHeight * dpr;
+
+    canvas.style.width = window.innerWidth + "px";
+    canvas.style.height = window.innerHeight + "px";
+
+    ctx.scale(dpr, dpr);
+}
+
+resizeCanvas();
+
+window.addEventListener("resize", resizeCanvas);
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 });
@@ -102,7 +118,7 @@ animate();
 // =======================
 document.addEventListener("mousemove", (e) => {
 
-    document.querySelectorAll(".hidden-item").forEach(el => {
+    hiddenItems.forEach(el => {
 
         const rect = el.getBoundingClientRect();
 
