@@ -210,41 +210,29 @@ nav a:hover::before {
 }
 
 
+.glow {
+    position:absolute;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    background:white;
+    filter:blur(180px);
+    opacity:.035;
 
-
-.glow{
-
-position:absolute;
-
-width:500px;
-
-height:500px;
-
-border-radius:50%;
-
-background:white;
-
-filter:blur(180px);
-
-opacity:.035;
-
+    animation: floatGlow 12s ease-in-out infinite;
 }
 
-.glow-left{
-
-left:-220px;
-
-top:-180px;
-
+.glow-left {
+    left:-220px;
+    top:-180px;
 }
 
-.glow-right{
-
-right:-220px;
-
-bottom:-180px;
-
+.glow-right {
+    right:-220px;
+    bottom:-180px;
 }
+
+
 
 @keyframes pulse{
 
@@ -313,14 +301,6 @@ opacity:.2;
 /* ========================= */
 /* BACKGROUND GLOW */
 /* ========================= */
-
-.glow {
-
-    animation:
-
-    floatGlow 12s ease-in-out infinite;
-
-}
 
 @keyframes floatGlow {
 
@@ -420,10 +400,6 @@ html, body {
     pointer-events: none;
 }
 
-.hero {
-    position: relative;
-    z-index: 2;
-}
 
 .hidden-layer {
     position: fixed;
