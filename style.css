@@ -129,10 +129,11 @@ transition:.35s;
 }
 
 nav a:hover {
-    letter-spacing:.22em;
-    background:rgba(255,255,255,.04);
-    border-color:rgba(255,255,255,.4);
+    letter-spacing:.25em;
+    background:rgba(255,255,255,.05);
+    border-color:rgba(255,255,255,.6);
     transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255,255,255,0.05);
 }
 
 .status{
