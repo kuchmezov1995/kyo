@@ -74,3 +74,40 @@ document.addEventListener("mousemove", (e) => {
     trail.style.top = e.clientY + "px";
   }, 50);
 });
+document.addEventListener("mousemove", (e) => {
+
+  const x = (window.innerWidth / 2 - e.clientX) * 0.01;
+  const y = (window.innerHeight / 2 - e.clientY) * 0.01;
+
+  const avatar = document.querySelector(".avatar");
+  const title = document.querySelector("h1");
+
+  if (avatar) avatar.style.transform = `translate(${x}px, ${y}px)`;
+  if (title) title.style.transform = `translate(${x * 0.5}px, ${y * 0.5}px)`;
+});
+setInterval(() => {
+
+  const canvas = document.getElementById("fx");
+  const ctx = canvas.getContext("2d");
+
+  const x1 = Math.random() * canvas.width;
+  const y1 = Math.random() * canvas.height;
+
+  const x2 = Math.random() * canvas.width;
+  const y2 = Math.random() * canvas.height;
+
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
+
+  for (let i = 0; i < 6; i++) {
+    const x = x1 + (x2 - x1) * (i / 6) + (Math.random() - 0.5) * 30;
+    const y = y1 + (y2 - y1) * (i / 6) + (Math.random() - 0.5) * 30;
+    ctx.lineTo(x, y);
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.8)";
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = "white";
+  ctx.stroke();
+
+}, 2500);
