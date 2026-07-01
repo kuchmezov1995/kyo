@@ -129,3 +129,16 @@ document.addEventListener("mousemove", (e) => {
   }, 60);
 
 });
+function randomLightning() {
+
+  const x1 = Math.random() * window.innerWidth;
+  const y1 = Math.random() * window.innerHeight;
+
+  const x2 = Math.random() * window.innerWidth;
+  const y2 = Math.random() * window.innerHeight;
+
+  drawLightning(x1, y1, x2, y2);
+
+}
+
+setInterval(randomLightning, 4000);
