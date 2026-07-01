@@ -28,7 +28,6 @@ if (hasMouse) {
     cursor = document.querySelector(".cursor");
     glow = document.querySelector(".mouse-glow");
 }
-const hiddenItems = document.querySelectorAll(".hidden-item");
 
 let mouseX = window.innerWidth / 2;
 let mouseY = window.innerHeight / 2;
@@ -77,8 +76,7 @@ function resizeCanvas() {
 resizeCanvas();
 
 window.addEventListener("resize", resizeCanvas);
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+
 
 let particles = [];
 
@@ -230,4 +228,6 @@ for (let i = 0; i < COUNT; i++) {
     item.style.animation = `floatSymbol ${6 + Math.random() * 10}s ease-in-out infinite`;
 
     layer.appendChild(item);
+
+    const hiddenItems = document.querySelectorAll(".hidden-item");
 }
