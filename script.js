@@ -1,8 +1,6 @@
-console.log("canvas script running");
-const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+console.log("SCRIPT OK");
+
+// ===== LOADER =====
 const loader = document.getElementById("loader");
 const percent = document.getElementById("percent");
 const app = document.querySelector(".app");
@@ -10,77 +8,46 @@ const app = document.querySelector(".app");
 let p = 0;
 
 const load = setInterval(() => {
-  p += Math.random() * 10;
-  percent.textContent = Math.floor(p) + "%";
+
+  p += 5;
+
+  if (percent) percent.textContent = p + "%";
 
   if (p >= 100) {
     clearInterval(load);
-    loader.style.display = "none";
-    app.classList.add("show");
+
+    setTimeout(() => {
+      if (loader) loader.style.display = "none";
+      if (app) app.classList.add("show");
+    }, 300);
   }
-}, 60);
 
-/* ===== CURSOR ===== */
-const cursor = document.querySelector(".cursor");
-const trail = document.querySelector(".trail");
+}, 50);
 
-document.addEventListener("mousemove", (e) => {
-  cursor.style.left = e.clientX + "px";
-  cursor.style.top = e.clientY + "px";
-
-  setTimeout(() => {
-    trail.style.left = e.clientX + "px";
-    trail.style.top = e.clientY + "px";
-  }, 40);
-});
-
-/* ===== PARALLAX ===== */
-document.addEventListener("mousemove", (e) => {
-  const x = (window.innerWidth/2 - e.clientX) * 0.01;
-  const y = (window.innerHeight/2 - e.clientY) * 0.01;
-
-  document.querySelector(".avatar").style.transform =
-    `translate(${x}px,${y}px)`;
-});
-
-/* ===== CANVAS ===== */
+// ===== SAFE CANVAS INIT (НЕ УПАДЁТ НИКОГДА) =====
 const canvas = document.getElementById("fx");
-const ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+if (canvas) {
 
-window.addEventListener("resize", () => {
+  const ctx = canvas.getContext("2d");
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-});
 
-function lightning() {
-  const x1 = Math.random()*canvas.width;
-  const y1 = Math.random()*canvas.height;
-  const x2 = Math.random()*canvas.width;
-  const y2 = Math.random()*canvas.height;
+  window.addEventListener("resize", () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  });
 
-  ctx.beginPath();
-  ctx.moveTo(x1,y1);
+  function animate() {
+    ctx.fillStyle = "rgba(0,0,0,0.2)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-  for(let i=0;i<6;i++){
-    const x = x1 + (x2-x1)*(i/6) + (Math.random()-0.5)*40;
-    const y = y1 + (y2-y1)*(i/6) + (Math.random()-0.5)*40;
-    ctx.lineTo(x,y);
+    requestAnimationFrame(animate);
   }
 
-  ctx.strokeStyle="white";
-  ctx.shadowBlur=20;
-  ctx.stroke();
+  animate();
+
+} else {
+  console.log("NO CANVAS FOUND");
 }
-
-setInterval(lightning,2500);
-
-function animate(){
-  ctx.fillStyle="rgba(0,0,0,0.2)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-  requestAnimationFrame(animate);
-}
-
-animate();
