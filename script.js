@@ -91,9 +91,10 @@ function animate() {
 animate();
 
 // =======================
-// HIDDEN INTERACTION (MOUSE)
+// MOUSE INTERACTION (HIDDEN ITEMS)
 // =======================
 document.addEventListener("mousemove", (e) => {
+
     document.querySelectorAll(".hidden-item").forEach(el => {
 
         const rect = el.getBoundingClientRect();
@@ -122,10 +123,11 @@ document.addEventListener("mousemove", (e) => {
         el.style.transform =
             `scale(${scale}) rotate(${el.dataset.rot || 0}deg)`;
     });
+
 });
 
 // =======================
-// HIDDEN SYMBOLS GENERATION
+// HIDDEN SYMBOLS (RANDOM SPAWN)
 // =======================
 const layer = document.querySelector(".hidden-layer");
 
@@ -151,12 +153,6 @@ const eggs = [
 "∞"
 ];
 
-// clusters (fixed)
-const clusters = [
-{x:15,y:20},{x:32,y:35},{x:70,y:18},{x:82,y:40},{x:18,y:72},
-{x:42,y:82},{x:64,y:65},{x:84,y:78},{x:50,y:50},{x:8,y:48}
-];
-
 const COUNT = 90;
 
 for (let i = 0; i < COUNT; i++) {
@@ -167,7 +163,7 @@ for (let i = 0; i < COUNT; i++) {
     const typeRandom = Math.random();
     const sizeRandom = Math.random();
 
-    // type
+    // TYPE
     if (typeRandom < 0.60) {
         item.dataset.type = "symbol";
         item.innerText = symbols[Math.floor(Math.random() * symbols.length)];
@@ -179,17 +175,14 @@ for (let i = 0; i < COUNT; i++) {
         item.innerText = eggs[Math.floor(Math.random() * eggs.length)];
     }
 
-    // cluster position
-    const cluster = clusters[Math.floor(Math.random() * clusters.length)];
-    const spread = 10;
-
-    const x = cluster.x + (Math.random() - 0.5) * spread;
-    const y = cluster.y + (Math.random() - 0.5) * spread;
+    // RANDOM POSITION (БЕЗ КЛАСТЕРОВ)
+    const x = Math.random() * 100;
+    const y = Math.random() * 100;
 
     item.style.left = x + "%";
     item.style.top = y + "%";
 
-    // size
+    // SIZE
     let size;
 
     if (sizeRandom < 0.60) {
@@ -202,7 +195,7 @@ for (let i = 0; i < COUNT; i++) {
 
     item.style.fontSize = size + "px";
 
-    // rotation
+    // ROTATION
     const rot = Math.random() * 360;
     item.dataset.rot = rot;
 
