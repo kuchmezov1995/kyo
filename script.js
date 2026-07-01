@@ -1,3 +1,8 @@
+console.log("canvas script running");
+const canvas = document.getElementById("fx");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 const loader = document.getElementById("loader");
 const percent = document.getElementById("percent");
 const app = document.querySelector(".app");
