@@ -488,3 +488,13 @@ body {
     transform: translate(-50%, -50%);
     z-index: 10000;
 }
+
+.mouse-glow {
+    position: fixed;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+}
