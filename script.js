@@ -195,11 +195,24 @@ for (let i = 0; i < COUNT; i++) {
 
     item.style.fontSize = size + "px";
 
-    // ROTATION
-    const rot = Math.random() * 360;
-    item.dataset.rot = rot;
+// ROTATION (3D RANDOM)
+const rotX = (Math.random() * 360) - 180;
+const rotY = (Math.random() * 360) - 180;
+const rotZ = Math.random() * 360;
 
-    item.style.animation = `floatSymbol ${8 + Math.random() * 8}s ease-in-out infinite`;
+// сохраняем (не обязательно, но полезно)
+item.dataset.rotx = rotX;
+item.dataset.roty = rotY;
+item.dataset.rotz = rotZ;
 
-    layer.appendChild(item);
-}
+// применяем 3D трансформацию
+item.style.transform = `
+    rotateX(${rotX}deg)
+    rotateY(${rotY}deg)
+    rotateZ(${rotZ}deg)
+`;
+
+// анимация плавания
+item.style.animation = `floatSymbol ${8 + Math.random() * 8}s ease-in-out infinite`;
+
+layer.appendChild(item);
