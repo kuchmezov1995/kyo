@@ -279,6 +279,33 @@ nav a:hover::before {
 
 
 
+.hidden-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hidden-item {
+    position:absolute;
+    color:white;
+
+    opacity:0.01;
+
+    pointer-events:none;
+    user-select:none;
+    
+    filter:blur(2px);
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease,
+        filter .35s ease;
+    
+    will-change:transform,opacity;
+}
+
+
 
 
 @keyframes pulse{
@@ -405,36 +432,6 @@ html, body {
     pointer-events: none;
 }
 
-
-.hidden-layer {
-    position: fixed;
-    inset: 0;
-    pointer-events: none;
-    z-index: 1;
-}
-
-.hidden-item{
-    position:absolute;
-
-    color:white;
-
-    opacity:0.01;
-
-    pointer-events:none;
-
-    user-select:none;
-
-    transition:
-        opacity .35s ease,
-        transform .35s ease,
-        filter .35s ease;
-
-    filter:blur(2px);
-
-    transform-origin:center;
-
-    will-change:transform,opacity;
-}
 
 @keyframes floatSymbol{
 
