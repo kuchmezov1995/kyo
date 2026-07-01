@@ -140,9 +140,11 @@ body::after {
 
     color: white;
     text-align: center;
-    
-    animation: logoAppear 1.8s ease;
 
+    display: inline-block;
+    transform: translateX(0.18em);
+
+    animation: logoAppear 1.8s ease;
     text-shadow: 0 0 20px rgba(255,255,255,0.08);
 }
 
