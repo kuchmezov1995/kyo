@@ -90,3 +90,31 @@ body {
     opacity: 1;
   }
 }
+body {
+  cursor: none;
+}
+
+.cursor {
+  position: fixed;
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  box-shadow: 0 0 12px white;
+}
+
+.cursor-trail {
+  position: fixed;
+  width: 20px;
+  height: 20px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 50%;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9998;
+  filter: blur(2px);
+  transition: 0.1s;
+}
