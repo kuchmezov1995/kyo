@@ -61,3 +61,16 @@ function draw() {
 }
 
 draw();
+// ===== CURSOR =====
+const cursor = document.querySelector(".cursor");
+const trail = document.querySelector(".cursor-trail");
+
+document.addEventListener("mousemove", (e) => {
+  cursor.style.left = e.clientX + "px";
+  cursor.style.top = e.clientY + "px";
+
+  setTimeout(() => {
+    trail.style.left = e.clientX + "px";
+    trail.style.top = e.clientY + "px";
+  }, 50);
+});
