@@ -92,26 +92,3 @@ function animate() {
 
 animate();
 
-function flash() {
-    const flash = document.createElement("div");
-
-    flash.style.position = "fixed";
-    flash.style.inset = "0";
-    flash.style.background = "white";
-    flash.style.opacity = "0.08";
-    flash.style.pointerEvents = "none";
-    flash.style.zIndex = "1";
-
-    document.body.appendChild(flash);
-
-    setTimeout(() => {
-        flash.remove();
-    }, 80 + Math.random() * 120);
-}
-
-// редкий триггер молнии
-setInterval(() => {
-    if (Math.random() > 0.92) {
-        flash();
-    }
-}, 1500);
