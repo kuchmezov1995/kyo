@@ -1,4 +1,5 @@
-const hasMouse = window.matchMedia("(pointer:fine)").matches;
+const isMobile = window.matchMedia("(max-width: 768px)").matches;
+const hasMouse = window.matchMedia("(pointer:fine)").matches && !isMobile;
 
 window.scrollTo(0, 0);
 if ('scrollRestoration' in history) {
@@ -53,7 +54,7 @@ function animateCursor() {
 
     requestAnimationFrame(animateCursor);
 }
-if (hasMouse) animateCursor();
+if (hasMouse && !isMobile) animateCursor();
 
 // =======================
 // BACKGROUND PARTICLES
@@ -113,38 +114,40 @@ animate();
 // =======================
 // MOUSE INTERACTION (HIDDEN ITEMS)
 // =======================
-document.addEventListener("mousemove", (e) => {
+if (!isMobile) {
+    document.addEventListener("mousemove", (e) => {
 
-    document.querySelectorAll(".hidden-item").forEach(el => {
+        hiddenItems.forEach(el => {
 
-        const rect = el.getBoundingClientRect();
+            const rect = el.getBoundingClientRect();
 
-        const dx = e.clientX - (rect.left + rect.width / 2);
-        const dy = e.clientY - (rect.top + rect.height / 2);
+            const dx = e.clientX - (rect.left + rect.width / 2);
+            const dy = e.clientY - (rect.top + rect.height / 2);
 
-        const distance = Math.sqrt(dx * dx + dy * dy);
+            const distance = Math.sqrt(dx * dx + dy * dy);
 
-        let radius = 260;
+            let radius = 260;
 
-        if (el.dataset.type === "music") radius = 180;
-        if (el.dataset.type === "egg") radius = 100;
+            if (el.dataset.type === "music") radius = 180;
+            if (el.dataset.type === "egg") radius = 100;
 
-        const intensity = Math.max(0, 1 - distance / radius);
+            const intensity = Math.max(0, 1 - distance / radius);
 
-        el.style.opacity = 0.05 + intensity * 0.95;
+            el.style.opacity = 0.05 + intensity * 0.95;
 
-        const shade = Math.floor(120 + intensity * 135);
-        el.style.color = `rgb(${shade},${shade},${shade})`;
+            const shade = Math.floor(120 + intensity * 135);
+            el.style.color = `rgb(${shade},${shade},${shade})`;
 
-        el.style.filter = `blur(${1.5 - intensity * 1.5}px)`;
+            el.style.filter = `blur(${2 - intensity * 2}px)`;
 
-        const scale = 1 + intensity * 0.35;
+            const scale = 1 + intensity * 0.35;
 
-        el.style.transform =
-            `scale(${scale}) rotate(${el.dataset.rot || 0}deg) skew(${el.dataset.skew || 0}deg)`;
+            el.style.transform =
+                `scale(${scale}) rotate(${el.dataset.rot}deg) skew(${el.dataset.skew}deg)`;
+        });
+
     });
-
-});
+}
 
 /* =========================
    SYMBOL GENERATION
@@ -175,7 +178,7 @@ const eggs = [
 "∞"
 ];
 
-const COUNT = 90;
+const COUNT = isMobile ? 25 : 90;
 
 for (let i = 0; i < COUNT; i++) {
 
