@@ -444,3 +444,16 @@ nav a:hover::before {
     }
 
 }
+
+/* ========================= */
+/* NOISE OVERLAY */
+/* ========================= */
+
+.noise {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.05;
+    background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+}
