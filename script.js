@@ -28,29 +28,56 @@ const load = setInterval(() => {
 }, 120);
 
 // ===== SIMPLE PARTICLES / LIGHT FX =====
-
 const canvas = document.getElementById("fx");
 const ctx = canvas.getContext("2d");
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
+let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+
+document.addEventListener("mousemove", (e) => {
+  mouse.x = e.clientX;
+  mouse.y = e.clientY;
+});
+
+// particles
 let particles = [];
 
-for (let i = 0; i < 40; i++) {
+for (let i = 0; i < 60; i++) {
   particles.push({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
-    r: Math.random() * 1.2,
-    vx: (Math.random() - 0.5) * 0.3,
-    vy: (Math.random() - 0.5) * 0.3
+    vx: (Math.random() - 0.5) * 0.4,
+    vy: (Math.random() - 0.5) * 0.4,
+    r: Math.random() * 1.5
   });
 }
 
-function animate() {
-  ctx.clearRect(0,0,canvas.width,canvas.height);
+function drawLightning(x1, y1, x2, y2) {
+  ctx.beginPath();
+  ctx.moveTo(x1, y1);
 
+  for (let i = 0; i < 6; i++) {
+    const x = x1 + (x2 - x1) * (i / 6) + (Math.random() - 0.5) * 30;
+    const y = y1 + (y2 - y1) * (i / 6) + (Math.random() - 0.5) * 30;
+    ctx.lineTo(x, y);
+  }
+
+  ctx.strokeStyle = "rgba(255,255,255,0.6)";
+  ctx.shadowBlur = 20;
+  ctx.shadowColor = "white";
+  ctx.stroke();
+}
+
+function animate() {
+
+  ctx.fillStyle = "rgba(0,0,0,0.25)";
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+  // particles
   particles.forEach(p => {
+
     p.x += p.vx;
     p.y += p.vy;
 
@@ -59,8 +86,22 @@ function animate() {
 
     ctx.beginPath();
     ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fillStyle = "rgba(255,255,255,0.4)";
+    ctx.fillStyle = "rgba(255,255,255,0.3)";
     ctx.fill();
+
+    // connection to mouse
+    const dx = p.x - mouse.x;
+    const dy = p.y - mouse.y;
+    const dist = Math.sqrt(dx * dx + dy * dy);
+
+    if (dist < 140) {
+      ctx.beginPath();
+      ctx.moveTo(p.x, p.y);
+      ctx.lineTo(mouse.x, mouse.y);
+      ctx.strokeStyle = "rgba(255,255,255,0.08)";
+      ctx.stroke();
+    }
+
   });
 
   requestAnimationFrame(animate);
