@@ -103,20 +103,28 @@ document.addEventListener("mousemove", (e) => {
 
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        // Радиус действия
-        const radius = 180;
+        let radius = 260;
 
-        // Чем ближе курсор, тем больше значение (от 0 до 1)
+        if (el.dataset.type === "music") radius = 180;
+        if (el.dataset.type === "egg") radius = 100;
+
         const intensity = Math.max(0, 1 - distance / radius);
 
-        // Плавное проявление
-        el.style.opacity = 0.01 + intensity * 0.45;
+        // Прозрачность
+        el.style.opacity = 0.01 + intensity * 0.65;
 
-        // Немного убираем размытие
+        // Цвет
+        const shade = Math.floor(120 + intensity * 135);
+        el.style.color = `rgb(${shade}, ${shade}, ${shade})`;
+
+        // Размытие
         el.style.filter = `blur(${2 - intensity * 2}px)`;
 
-        // Лёгкое увеличение и сохранение случайного поворота
-        el.style.transform = `scale(${1 + intensity * 0.25}) rotate(${getComputedStyle(el).getPropertyValue("--r")})`;
+        // Увеличение
+        const scale = 1 + intensity * 0.35;
+
+        el.style.transform =
+            `scale(${scale}) rotate(${getComputedStyle(el).getPropertyValue("--r")})`;
 
     });
 
