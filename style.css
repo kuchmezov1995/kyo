@@ -513,3 +513,7 @@ body {
         #000000 60%
     );
 }
+
+* {
+    outline: 0px solid red;
+}
