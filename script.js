@@ -120,11 +120,16 @@ document.addEventListener("mousemove", (e) => {
 
         const scale = 1 + intensity * 0.35;
 
-        el.style.transform =
-    `scale(${scale})
-     rotateX(${el.dataset.rotx}deg)
-     rotateY(${el.dataset.roty}deg)
-     rotateZ(${el.dataset.rotz}deg)`;
+     el.style.opacity = 0.02 + intensity * 0.7;
+
+el.style.filter = `blur(${2 - intensity * 2}px)`;
+
+el.style.transform = `
+    scale(${1 + intensity * 0.35})
+    rotateX(var(--rx))
+    rotateY(var(--ry))
+    rotateZ(var(--rz))
+`;
     });
 
 });
