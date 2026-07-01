@@ -12,6 +12,12 @@ box-sizing:border-box;
 
 }
 
+:root {
+    --purple: #a855f7;
+    --purple-soft: rgba(168, 85, 247, 0.25);
+    --purple-glow: rgba(168, 85, 247, 0.12);
+}
+
 body {
     margin: 0;
     padding: 0;
@@ -57,10 +63,12 @@ height:170px;
 
 border-radius:50%;
 
-border:2px solid rgba(255,255,255,.25);
-
+border: 2px solid rgba(168, 85, 247, 0.35);
+box-shadow:
+        0 0 25px rgba(168, 85, 247, 0.15),
+        inset 0 0 20px rgba(168, 85, 247, 0.08);
 object-fit:cover;
-
+    
 }
 
 .avatar-ring{
@@ -71,7 +79,7 @@ inset:-10px;
 
 border-radius:50%;
 
-border:1px solid rgba(255,255,255,.15);
+border: 1px solid rgba(168, 85, 247, 0.2);
 
 animation:pulse 4s infinite;
 
@@ -110,30 +118,26 @@ gap:18px;
 
 }
 
-nav a{
+nav a {
+    color: white;
+    text-decoration: none;
+    padding: 18px;
+    text-align: center;
 
-color:white;
+    border-top: 1px solid rgba(168, 85, 247, 0.15);
+    border-bottom: 1px solid rgba(168, 85, 247, 0.15);
 
-text-decoration:none;
+    transition: .35s;
 
-padding:18px;
-
-text-align:center;
-
-border-top:1px solid var(--line);
-
-border-bottom:1px solid var(--line);
-
-transition:.35s;
-
+    position: relative;
 }
 
 nav a:hover {
-    letter-spacing:.25em;
-    background:rgba(255,255,255,.05);
-    border-color:rgba(255,255,255,.6);
+    background: rgba(168, 85, 247, 0.08);
+    border-color: rgba(168, 85, 247, 0.5);
+    letter-spacing: .25em;
     transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    box-shadow: 0 0 25px rgba(168, 85, 247, 0.12);
 }
 
 .status{
@@ -599,3 +603,33 @@ body::before {
     }
 
 }
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 30% 40%, rgba(170, 70, 255, 0.10), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(120, 0, 255, 0.08), transparent 45%);
+    z-index: 0;
+}
+
+nav a::before {
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(168, 85, 247, 0.25),
+        transparent
+    );
+}
+
+.cursor {
+    background: rgba(255,255,255,0.9);
+    box-shadow:
+        0 0 10px rgba(168, 85, 247, 0.4),
+        0 0 25px rgba(168, 85, 247, 0.25),
+        0 0 60px rgba(168, 85, 247, 0.15);
+}
+
+
