@@ -167,40 +167,6 @@ const egg = [
     "∞"
 ];
 
-const COUNT = 90;
-
-for(let i=0;i<COUNT;i++){
-
-    const item=document.createElement("span");
-
-    item.className="hidden-item";
-
-    const random = Math.random();
-
-if (random < 0.60) {
-
-    item.dataset.type = "symbol";
-
-    item.innerText =
-        symbols[Math.floor(Math.random() * symbols.length)];
-
-} else if (random < 0.90) {
-
-    item.dataset.type = "music";
-
-    item.innerText =
-        music[Math.floor(Math.random() * music.length)];
-
-} else {
-
-    item.dataset.type = "egg";
-
-    item.innerText =
-        easterEggs[Math.floor(Math.random() * easterEggs.length)];
-
-}
-
- // Выбираем один из 10 центров
 const clusters = [
     {x:15,y:20},
     {x:32,y:35},
@@ -214,6 +180,41 @@ const clusters = [
     {x:8,y:48}
 ];
 
+const COUNT = 90;
+
+for(let i=0;i<COUNT;i++){
+
+    const item=document.createElement("span");
+
+    item.className="hidden-item";
+
+    const typeRandom = Math.random();
+    
+    const sizeRandom = Math.random();
+
+if (typeRandom < 0.60) {
+
+    item.dataset.type = "symbol";
+
+    item.innerText =
+        symbol[Math.floor(Math.random() * symbol.length)];
+
+} else if (random < 0.90) {
+
+    item.dataset.type = "music";
+
+    item.innerText =
+        music[Math.floor(Math.random() * music.length)];
+
+} else {
+
+    item.dataset.type = "egg";
+
+    item.innerText =
+        egg[Math.floor(Math.random() * egg.length)];
+
+}
+
 const cluster = clusters[Math.floor(Math.random()*clusters.length)];
 
 const spread = 10;
@@ -226,7 +227,7 @@ item.style.top =
 
     let size;
 
-if (random < 0.60){
+if (sizeRandom < 0.60){
 
     size = 8 + Math.random() * 14;
 
