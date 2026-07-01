@@ -14,6 +14,10 @@ box-sizing:border-box;
 
 body{
 
+margin: 0;
+    
+padding: 0;
+    
 background:#000;
 
 font-family:"Space Grotesk",sans-serif;
@@ -470,6 +474,8 @@ body {
 
 .cursor {
     position: fixed;
+    left: 0;
+    top: 0;
     width: 12px;
     height: 12px;
     background: rgba(255,255,255,0.9);
@@ -477,7 +483,6 @@ body {
     pointer-events: none;
     transform: translate(-50%, -50%);
     z-index: 9999;
-
     filter: blur(2px);
 }
 
@@ -487,8 +492,10 @@ body {
 
 .mouse-glow {
     position: fixed;
-    width: 400px;
-    height: 400px;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 300px;
     background: radial-gradient(circle, rgba(255,255,255,0.08), transparent 60%);
     pointer-events: none;
     transform: translate(-50%, -50%);
