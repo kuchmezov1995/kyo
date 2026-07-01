@@ -4,14 +4,6 @@ padding:0;
 box-sizing:border-box;
 }
 
-:root{
-
---bg:#000;
---text:#fff;
---line:rgba(255,255,255,.12);
-
-}
-
 :root {
     --purple: #a855f7;
     --purple-soft: rgba(168, 85, 247, 0.25);
@@ -19,8 +11,6 @@ box-sizing:border-box;
 }
 
 body {
-    margin: 0;
-    padding: 0;
     min-height: 100vh;
     overflow: hidden;
 
@@ -29,6 +19,24 @@ body {
     align-items: center;
 
     position: relative;
+    
+    background: radial-gradient(
+        circle at 20% 20%,
+        #120018 0%,
+        #050006 40%,
+        #000000 100%
+    );
+    
+    opacity: 0;
+    transition: opacity 1.4s ease;
+    
+    animation: breathe 6s ease-in-out infinite;
+}
+
+body.loaded {
+
+    opacity: 1;
+
 }
 
 .hero{
@@ -247,23 +255,6 @@ opacity:.2;
 }
 
 }
-/* ========================= */
-/* PAGE APPEAR */
-/* ========================= */
-
-body {
-
-    opacity: 0;
-
-    transition: opacity 1.4s ease;
-
-}
-
-body.loaded {
-
-    opacity: 1;
-
-}
 
 /* ========================= */
 /* LOGO */
@@ -445,10 +436,6 @@ nav a:hover::before {
     background-image: url("https://www.transparenttextures.com/patterns/noise.png");
 }
 
-body {
-    animation: breathe 6s ease-in-out infinite;
-}
-
 @keyframes breathe {
     50% {
         filter: brightness(1.05);
@@ -495,19 +482,6 @@ body {
 
 * {
     cursor: none !important;
-}
-
-body {
-    background: radial-gradient(
-        circle at 20% 20%,
-        #120018 0%,
-        #050006 40%,
-        #000000 100%
-    );
-}
-
-* {
-    outline: 0px solid red;
 }
 
 html, body {
