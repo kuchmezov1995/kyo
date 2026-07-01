@@ -560,11 +560,25 @@ body::before {
     z-index: 1;
 }
 
-.hidden-item {
-    position: absolute;
-    color: white;
-    font-size: 18px;
-    opacity: 0.02;
-    transition: 0.4s ease;
-    filter: blur(1px);
+.hidden-item{
+    position:absolute;
+
+    color:white;
+
+    opacity:0.01;
+
+    pointer-events:none;
+
+    user-select:none;
+
+    transition:
+        opacity .35s ease,
+        transform .35s ease,
+        filter .35s ease;
+
+    filter:blur(2px);
+
+    transform-origin:center;
+
+    will-change:transform,opacity;
 }
