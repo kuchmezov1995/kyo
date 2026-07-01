@@ -317,6 +317,15 @@ nav a:hover::before {
 }
 
 
+#bg { 
+    position: fixed; 
+    inset: 0; 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+
+
 @keyframes fadeUp {
     from { opacity: 0; transform: translateY(20px);
     }
