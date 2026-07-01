@@ -140,14 +140,11 @@ transition:.35s;
 
 }
 
-nav a:hover{
-
-letter-spacing:.18em;
-
-background:rgba(255,255,255,.03);
-
-border-color:white;
-
+nav a:hover {
+    letter-spacing:.22em;
+    background:rgba(255,255,255,.04);
+    border-color:rgba(255,255,255,.4);
+    transform: translateY(-2px);
 }
 
 .status{
@@ -396,13 +393,10 @@ nav a:hover::before {
 }
 
 .avatar:hover {
-
-    transform: scale(1.03);
-
+    transform: scale(1.04);
     box-shadow:
-
-    0 0 40px rgba(255,255,255,.15);
-
+        0 0 30px rgba(255,255,255,0.12),
+        0 0 80px rgba(255,255,255,0.05);
 }
 
 .avatar-ring {
@@ -456,4 +450,14 @@ nav a:hover::before {
     z-index: 9999;
     opacity: 0.05;
     background-image: url("https://www.transparenttextures.com/patterns/noise.png");
+}
+
+body {
+    animation: breathe 6s ease-in-out infinite;
+}
+
+@keyframes breathe {
+    50% {
+        filter: brightness(1.05);
+    }
 }
