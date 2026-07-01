@@ -2,8 +2,8 @@ const isMobile = window.matchMedia("(max-width: 768px)").matches;
 const hasMouse = window.matchMedia("(pointer:fine)").matches && !isMobile;
 
 window.scrollTo(0, 0);
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
+if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
 }
 
 // =======================
@@ -54,6 +54,7 @@ function animateCursor() {
 
     requestAnimationFrame(animateCursor);
 }
+
 if (hasMouse && !isMobile) animateCursor();
 
 // =======================
@@ -75,9 +76,7 @@ function resizeCanvas() {
 }
 
 resizeCanvas();
-
 window.addEventListener("resize", resizeCanvas);
-
 
 let particles = [];
 
@@ -109,14 +108,18 @@ function animate() {
 
     requestAnimationFrame(animate);
 }
+
 animate();
 
 // =======================
-// MOUSE INTERACTION (HIDDEN ITEMS)
+// HIDDEN ITEMS
 // =======================
+let hiddenItems = [];
+
+// ОБНОВЛЯЕМ ТОЛЬКО ПОСЛЕ ГЕНЕРАЦИИ
+
 if (!isMobile) {
     document.addEventListener("mousemove", (e) => {
-
         hiddenItems.forEach(el => {
 
             const rect = el.getBoundingClientRect();
@@ -140,18 +143,15 @@ if (!isMobile) {
 
             el.style.filter = `blur(${2 - intensity * 2}px)`;
 
-            const scale = 1 + intensity * 0.35;
-
             el.style.transform =
-                `scale(${scale}) rotate(${el.dataset.rot}deg) skew(${el.dataset.skew}deg)`;
+                `scale(${1 + intensity * 0.35}) rotate(${el.dataset.rot}deg) skew(${el.dataset.skew}deg)`;
         });
-
     });
 }
 
-/* =========================
-   SYMBOL GENERATION
-========================= */
+// =======================
+// SYMBOL GENERATION
+// =======================
 const layer = document.querySelector(".hidden-layer");
 
 const symbols = [
@@ -203,11 +203,9 @@ for (let i = 0; i < COUNT; i++) {
 
     item.dataset.type = type;
 
-    /* POSITION */
     item.style.left = Math.random() * 100 + "%";
     item.style.top = Math.random() * 100 + "%";
 
-    /* SIZE */
     let size =
         sizeRandom < 0.6 ? 10 + Math.random() * 12 :
         sizeRandom < 0.9 ? 14 + Math.random() * 10 :
@@ -215,7 +213,6 @@ for (let i = 0; i < COUNT; i++) {
 
     item.style.fontSize = size + "px";
 
-    /* ROTATION + SKEW (КЛЮЧ К “НЕ ПАРАЛЛЕЛЬНО”) */
     const rot = Math.random() * 360;
     const skew = (Math.random() - 0.5) * 35;
 
@@ -227,10 +224,10 @@ for (let i = 0; i < COUNT; i++) {
         skew(${skew}deg)
     `;
 
-    /* FLOAT */
     item.style.animation = `floatSymbol ${6 + Math.random() * 10}s ease-in-out infinite`;
 
     layer.appendChild(item);
-
-    const hiddenItems = document.querySelectorAll(".hidden-item");
 }
+
+// ОБНОВЛЯЕМ hiddenItems ПОСЛЕ ГЕНЕРАЦИИ
+hiddenItems = document.querySelectorAll(".hidden-item");
