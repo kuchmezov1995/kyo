@@ -600,6 +600,5 @@ body::before {
 }
 
 .hidden-layer {
-    perspective: 800px;
+    perspective: 900px;
 }
-
