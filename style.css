@@ -589,20 +589,3 @@ body::before {
     100% { transform: translateY(0px); }
 }
 
-.hidden-layer {
-    perspective: 900px;
-}
-
-.hidden-item {
-    position: absolute;
-    transform-style: preserve-3d;
-}
-
-.hidden-item {
-    transform:
-        translateY(var(--float, 0px))
-        rotateX(var(--rx))
-        rotateY(var(--ry))
-        rotateZ(var(--rz));
-}
-
