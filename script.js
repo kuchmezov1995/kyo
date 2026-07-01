@@ -103,13 +103,61 @@ document.addEventListener("mousemove", (e) => {
 
         const distance = Math.sqrt(dx * dx + dy * dy);
 
-        if (distance < 120) {
-            el.style.opacity = "0.35";
-            el.style.filter = "blur(0px)";
-        } else {
-            el.style.opacity = "0.02";
-            el.style.filter = "blur(1px)";
-        }
+        // Радиус действия
+        const radius = 180;
+
+        // Чем ближе курсор, тем больше значение (от 0 до 1)
+        const intensity = Math.max(0, 1 - distance / radius);
+
+        // Плавное проявление
+        el.style.opacity = 0.01 + intensity * 0.45;
+
+        // Немного убираем размытие
+        el.style.filter = `blur(${2 - intensity * 2}px)`;
+
+        // Лёгкое увеличение и сохранение случайного поворота
+        el.style.transform = `scale(${1 + intensity * 0.25}) rotate(${getComputedStyle(el).getPropertyValue("--r")})`;
+
     });
 
 });
+
+// =======================
+// Hidden Symbols
+// =======================
+
+const layer = document.querySelector(".hidden-layer");
+
+const symbols = [
+"✦","✧","✶","✹","◆","◇","◈","◎","◉",
+"△","▽","╳","╱","╲","01","10","<>",
+"{}","//","K","Y","O","404","VOID","NULL"
+];
+
+const COUNT = 80;
+
+for(let i=0;i<COUNT;i++){
+
+    const item=document.createElement("span");
+
+    item.className="hidden-item";
+
+    item.innerText=symbols[Math.floor(Math.random()*symbols.length)];
+
+    item.style.left=Math.random()*100+"%";
+
+    item.style.top=Math.random()*100+"%";
+
+    const size=12+Math.random()*26;
+
+    item.style.fontSize=size+"px";
+
+    const rot=(Math.random()*360)+"deg";
+
+    item.style.setProperty("--r",rot);
+
+    item.style.animation=`floatSymbol ${8+Math.random()*8}s ease-in-out infinite`;
+
+    layer.appendChild(item);
+
+}
