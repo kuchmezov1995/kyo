@@ -121,7 +121,10 @@ document.addEventListener("mousemove", (e) => {
         const scale = 1 + intensity * 0.35;
 
         el.style.transform =
-            `scale(${scale}) rotate(${el.dataset.rot || 0}deg)`;
+    `scale(${scale})
+     rotateX(${el.dataset.rotx}deg)
+     rotateY(${el.dataset.roty}deg)
+     rotateZ(${el.dataset.rotz}deg)`;
     });
 
 });
