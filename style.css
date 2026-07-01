@@ -598,3 +598,8 @@ body::before {
     }
 
 }
+
+.hidden-layer {
+    perspective: 800px;
+}
+
