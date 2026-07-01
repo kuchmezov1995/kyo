@@ -121,13 +121,13 @@ document.addEventListener("mousemove", (e) => {
         const scale = 1 + intensity * 0.35;
 
 el.style.opacity = 0.02 + intensity * 0.7;
+
 el.style.filter = `blur(${2 - intensity * 2}px)`;
 
+// 2D version
 el.style.transform = `
-    rotateX(var(--rx))
-    rotateY(var(--ry))
-    rotateZ(var(--rz))
     scale(${1 + intensity * 0.35})
+    rotate(${el.dataset.rot || 0}deg)
 `;
     });
 
