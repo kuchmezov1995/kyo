@@ -133,7 +133,7 @@ const layer = document.querySelector(".hidden-layer");
 // =======================
 
 // Декоративные символы
-const symbols = [
+const symbol = [
     "✦","✧","✶","✹","◆","◇","◈","◎","◉",
     "△","▽","╳","╱","╲","○","●","◌"
 ];
@@ -146,7 +146,7 @@ const music = [
 ];
 
 // Пасхалки
-const easterEggs = [
+const egg = [
     "PROJECT SAVED",
     "EXPORT COMPLETE",
     "24 BIT",
@@ -171,15 +171,21 @@ for(let i=0;i<COUNT;i++){
 
 if (random < 0.60) {
 
+    item.dataset.type = "symbol";
+
     item.innerText =
         symbols[Math.floor(Math.random() * symbols.length)];
 
 } else if (random < 0.90) {
 
+    item.dataset.type = "music";
+
     item.innerText =
         music[Math.floor(Math.random() * music.length)];
 
 } else {
+
+    item.dataset.type = "egg";
 
     item.innerText =
         easterEggs[Math.floor(Math.random() * easterEggs.length)];
